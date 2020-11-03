@@ -1,0 +1,137 @@
+<div>
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col col-md-6">
+                    <h5 class="card-title">
+                        {{ '::Menu:Books' | abpLocalization }}
+                    </h5>
+                </div>
+                <div class="text-right col col-md-6">
+                    <div class="text-lg-right pt-2">
+                        <button nz-button nzType="primary" id="create" (click)="showModal()">
+                            <i class="fa fa-plus mr-1"></i>
+                            {{ "::NewBook" | abpLocalization }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <nz-table #bookTable nzBordered [nzData]="book.items" [nzFooter]="'Total :' + '' + book.totalCount"
+                nzShowPagination="true" nzSize="small">
+                <thead>
+                    <tr>
+                        <th>{{'::Name' | abpLocalization}}</th>
+                        <th>{{'::Price' | abpLocalization}}</th>
+                        <th>{{'::PublishDate' | abpLocalization}}</th>
+                        <th>{{'::Type' | abpLocalization}}</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of bookTable.data">
+                        <td>{{ data.name }}</td>
+                        <td>{{ data.price | currency }}</td>
+                        <td>{{ data.publishDate | date }}</td>
+                        <td>{{ '::Enum:BookType:' + data.type | abpLocalization }}</td>
+                        <td>
+                            <button nz-button nz-dropdown [nzDropdownMenu]="menu">
+                                <i class="fa fa-cog mr-1"></i>{{ '::Actions' | abpLocalization }}
+                                <i nz-icon nzType="down"></i></button>
+                            <nz-dropdown-menu #menu="nzDropdownMenu">
+                                <ul nz-menu>
+                                    <li nz-menu-item>
+                                        <a (click)="editBook(data.id)">
+                                            {{ '::Edit' | abpLocalization }}
+                                        </a>
+                                    </li>
+                                    <li nz-menu-item>
+                                        <a (click)="delete(data.id)">
+                                            {{ '::Delete' | abpLocalization }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nz-dropdown-menu>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+
+
+    <nz-modal [(nzVisible)]="isModalOpen" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+        (nzOnCancel)="handleCancel()">
+        <ng-template #modalTitle>
+            {{ (selectedBook.id ? '::Edit' : '::NewBook' ) | abpLocalization }}
+        </ng-template>
+
+        <ng-template #modalContent>
+            <form nz-form [formGroup]="form" (ngSubmit)="save()">
+                <!-- <div class="form-group">
+                    <label for="book-name">Name</label>
+                    <input type="text" id="book-name" class="form-control" formControlName="name" autofocus />
+                    
+                </div> -->
+                <!-- Name input  -->
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24" nzFor="name" nzRequired>Name</nz-form-label>
+                    <nz-form-control nzHasFeedback [nzSpan]="24" nzErrorTip="Champs obligatoire !">
+                        <input nz-input id="book-name" formControlName="name" name="name" autofocus>
+                    </nz-form-control>
+                </nz-form-item>
+
+                <!-- Price input  -->
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24" nzFor="price" nzRequired>Price</nz-form-label>
+                    <nz-form-control [nzSpan]="24" nzErrorTip="Champs obligatoire !">
+                        <input nz-input id="book-price" formControlName="price" name="price">
+                    </nz-form-control>
+                </nz-form-item>
+
+                <!-- Type select 2   -->
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24" nzFor="type" nzRequired>Type</nz-form-label>
+                    <select class="form-control" id="book-type" formControlName="type">
+                        <option [ngValue]="null">Select a book type</option>
+                        <option [ngValue]="type.value" *ngFor="let type of bookTypes"> {{ type.key }}</option>
+                    </select>
+                </nz-form-item>
+                <!-- Type select 2 ABP  -->
+                <!-- <div class="form-group">
+                    <label for="book-type">Type</label><span> * </span>
+                    <select class="form-control" id="book-type" formControlName="type">
+                        <option [ngValue]="null">Select a book type</option>
+                        <option [ngValue]="type.value" *ngFor="let type of bookTypes"> {{ type.key }}</option>
+                    </select>
+                </div> -->
+
+                <!-- publish input  -->
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="24" nzFor="publishDate" nzRequired>Publish date</nz-form-label>
+                    <!-- <input #datepicker="ngbDatepicker" class="form-control" name="datepicker"
+                        formControlName="publishDate" ngbDatepicker (click)="datepicker.toggle()" /> -->
+                </nz-form-item>
+                <!-- publish input ABP -->
+                <!-- <div class="form-group">
+                    <label>Publish date</label><span> * </span>
+                    <input #datepicker="ngbDatepicker" class="form-control" name="datepicker"
+                        formControlName="publishDate" ngbDatepicker (click)="datepicker.toggle()" />
+                </div> -->
+                
+            </form>
+        </ng-template>
+
+        <ng-template #modalFooter>
+            <button nz-button nzType="default" (click)="handleCancel()">
+                {{ '::Close' | abpLocalization }}
+            </button>
+            <button nz-button nzType="primary" (click)="save()" [disabled]="form.invalid"
+                [nzLoading]="isConfirmLoading">
+                <i class="fa fa-check mr-1"></i>
+                {{ '::Save' | abpLocalization }}
+            </button>
+        </ng-template>
+    </nz-modal>
+</div>

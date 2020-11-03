@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ThemeBasicModule } from '@abp/ng.theme.basic';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
+import { AntdModule } from '../antd.module';
 
 @NgModule({
   declarations: [],
@@ -12,14 +13,16 @@ import { NgxValidateCoreModule } from '@ngx-validate/core';
     ThemeSharedModule,
     ThemeBasicModule,
     NgbDropdownModule,
-    NgxValidateCoreModule
+    NgxValidateCoreModule,
+    AntdModule
   ],
   exports: [
     CoreModule,
     ThemeSharedModule,
     ThemeBasicModule,
     NgbDropdownModule,
-    NgxValidateCoreModule
+    NgxValidateCoreModule,
+    AntdModule
   ],
   providers: []
 })
