@@ -1,35 +1,16 @@
-<ul class="navbar-nav">
-    <li *ngIf="(dropdownLanguages$ | async)?.length > 0" class="nav-item">
-      <div class="dropdown" ngbDropdown #languageDropdown="ngbDropdown" display="static">
-        <a
-          ngbDropdownToggle
-          class="nav-link"
-          href="javascript:void(0)"
-          role="button"
-          id="dropdownMenuLink"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          {{ defaultLanguage$ | async }}
-        </a>
-        <div
-          class="dropdown-menu dropdown-menu-right border-0 shadow-sm"
-          aria-labelledby="dropdownMenuLink"
-          [class.d-block]="smallScreen && languageDropdown.isOpen()"
-        >
-          <a
-            *ngFor="let lang of dropdownLanguages$ | async"
-            href="javascript:void(0)"
-            class="dropdown-item"
-            (click)="onChangeLang(lang.cultureName)"
-            >{{ lang?.displayName }}</a
-          >
-        </div>
-      </div>
-    </li>
-  
-    <!-- <li class="nav-item">
+<div>
+    <ng-container >
+      <button nz-button nz-dropdown [nzDropdownMenu]="menu" nzPlacement="bottomRight">{{ defaultLanguage$ | async }}</button>
+      <nz-dropdown-menu #menu="nzDropdownMenu" >
+        <ul nz-menu *ngFor="let lang of dropdownLanguages$ | async">
+          <li nz-menu-item (click)="onChangeLang(lang.cultureName)">{{ lang?.displayName }}</li>
+        </ul>
+      </nz-dropdown-menu>
+    </ng-container>
+</div>
+
+<!-- <ul class="navbar-nav">  
+    <li class="nav-item">
       <ng-template #loginBtn>
         <a role="button" class="nav-link" routerLink="/account/login">{{
           'AbpAccount::Login' | abpLocalization
@@ -67,45 +48,6 @@
           >
         </div>
       </div>
-    </li> -->
-  </ul>
+    </li>
+  </ul> -->
   
-  <div>
-    <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menu">
-      <span class="text-uppercase">EB</span>
-    </div>
-    <nz-dropdown-menu #menu="nzDropdownMenu">
-      <ul nz-menu>
-        <li nz-menu-item *ngIf="(dropdownLanguages$ | async)?.length > 0" >
-            <div class="dropdown" ngbDropdown #languageDropdown="ngbDropdown" display="static">
-                <a
-                  ngbDropdownToggle
-                  class="nav-link"
-                  href="javascript:void(0)"
-                  role="button"
-                  id="dropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  {{ defaultLanguage$ | async }}
-                </a>
-                <div
-                  class="dropdown-menu dropdown-menu-right border-0 shadow-sm"
-                  aria-labelledby="dropdownMenuLink"
-                  [class.d-block]="smallScreen && languageDropdown.isOpen()"
-                >
-                  <a
-                    *ngFor="let lang of dropdownLanguages$ | async"
-                    href="javascript:void(0)"
-                    class="dropdown-item"
-                    (click)="onChangeLang(lang.cultureName)"
-                    >{{ lang?.displayName }}</a
-                  >
-                </div>
-              </div>
-        </li>
-       
-      </ul>
-    </nz-dropdown-menu>
-  </div>

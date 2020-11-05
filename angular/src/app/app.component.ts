@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ReplaceableComponentsService } from '@abp/ng.core'; // imported ReplaceableComponentsService
-// import { MenuComponent } from './menu/menu.component'; // imported NavItemsComponent
-import { eThemeBasicComponents, NavItemsComponent } from '@abp/ng.theme.basic'; // imported eThemeBasicComponents
 
 @Component({
   selector: 'app-root',
@@ -12,17 +9,6 @@ import { eThemeBasicComponents, NavItemsComponent } from '@abp/ng.theme.basic'; 
   `,
 })
 export class AppComponent implements OnInit {
-
-  constructor(
-    private replaceableComponents: ReplaceableComponentsService
-    ) {} // injected ReplaceableComponentsService
-
-  ngOnInit() {
-    //...
-
-    this.replaceableComponents.add({
-        component: NavItemsComponent,
-        key: eThemeBasicComponents.NavItems,
-      });
-  }
+  constructor( ) {}
+  ngOnInit() {}
 }

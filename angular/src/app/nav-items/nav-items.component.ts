@@ -17,6 +17,7 @@ import snq from 'snq';
   templateUrl: 'nav-items.component.html',
 })
 export class NavItemsComponent implements AfterViewInit {
+  
   @Select(ConfigState.getOne('currentUser'))
   currentUser$: Observable<ApplicationConfiguration.CurrentUser>;
 
