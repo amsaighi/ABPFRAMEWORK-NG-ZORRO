@@ -45,7 +45,9 @@
       <nz-content>
         <nz-card>
           <h1>{{ '::Welcome' | abpLocalization }}</h1>
-          <div class="row">
+          <app-nav-items></app-nav-items>
+          <!-- <app-nav-items></app-nav-items> -->
+          <!-- <div class="row">
             <div class="col-md-6 mx-auto">
               <p>{{ '::LongWelcomeMessage' | abpLocalization }}</p>
               <hr class="my-4" />
@@ -53,7 +55,7 @@
           </div>
           <a href="https://abp.io?ref=tmpl" target="_blank" class="btn btn-primary px-4">abp.io</a>
           <a *ngIf="!hasLoggedIn" (click)="login()" class="px-4 btn btn-primary ml-1" role="button"><i
-              class="fa fa-sign-in"></i> {{ 'AbpIdentity::Login' | abpLocalization }}</a>
+              class="fa fa-sign-in"></i> {{ 'AbpIdentity::Login' | abpLocalization }}</a> -->
         </nz-card>
         <!-- <abp-loader-bar></abp-loader-bar>
         <abp-dynamic-layout></abp-dynamic-layout> -->

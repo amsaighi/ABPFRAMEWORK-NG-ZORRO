@@ -16,6 +16,7 @@ import { APP_ROUTE_PROVIDER } from './route.provider';
 
 // antd components module
 import { AntdModule } from 'src/app/antd.module'
+import { SharedModule } from './shared/shared.module';
 
 const MODULES = [
   BrowserModule,
@@ -31,7 +32,8 @@ const MODULES = [
   SettingManagementConfigModule.forRoot(),
   NgxsModule.forRoot(),
   ThemeBasicModule.forRoot(),
-  AntdModule
+  AntdModule,
+  SharedModule
 ]
 @NgModule({
   imports: [
