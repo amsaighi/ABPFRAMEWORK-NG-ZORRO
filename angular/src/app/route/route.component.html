@@ -1,0 +1,63 @@
+<div class="logo"></div>
+<ul nz-menu nzTheme="dark" nzMode="inline">
+  <li nz-menu-item>
+    <a class="nav-link" routerLink="/"><i class="fas fa-home"></i> {{ '::Menu:Home' | abpLocalization }}</a>
+  </li>
+  <li nz-menu-item>
+    <a class="nav-link" routerLink="/my-page"><i class="fas fa-newspaper mr-1"></i>My Page</a>
+  </li>
+  <li nz-menu-item #navbarRootDropdown [abpVisibility]="routeContainer" class="nav-item dropdown" display="static"
+    (click)="
+        navbarRootDropdown.expand
+          ? (navbarRootDropdown.expand = false)
+          : (navbarRootDropdown.expand = true)
+      ">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+      <i class="fas fa-wrench"></i>
+      {{ 'AbpUiNavigation::Menu:Administration' | abpLocalization }}
+    </a>
+    <div #routeContainer class="dropdown-menu border-0 shadow-sm"
+      (click)="$event.preventDefault(); $event.stopPropagation()"
+      [class.d-block]="smallScreen && navbarRootDropdown.expand">
+      <div class="dropdown-submenu" ngbDropdown #dropdownSubmenu="ngbDropdown" placement="right-top" [autoClose]="true"
+        *abpPermission="'AbpIdentity.Roles || AbpIdentity.Users'">
+        <div ngbDropdownToggle [class.dropdown-toggle]="false">
+          <a abpEllipsis="210px" [abpEllipsisEnabled]="!smallScreen" role="button"
+            class="btn d-block text-left dropdown-toggle">
+            <i class="fa fa-id-card-o"></i>
+            {{ 'AbpIdentity::Menu:IdentityManagement' | abpLocalization }}
+          </a>
+        </div>
+        <div #childrenContainer class="dropdown-menu border-0 shadow-sm"
+          [class.d-block]="smallScreen && dropdownSubmenu.isOpen()">
+          <div class="dropdown-submenu" *abpPermission="'AbpIdentity.Roles'">
+            <a class="dropdown-item" routerLink="/identity/roles">
+              {{ 'AbpIdentity::Roles' | abpLocalization }}</a>
+          </div>
+          <div class="dropdown-submenu" *abpPermission="'AbpIdentity.Users'">
+            <a class="dropdown-item" routerLink="/identity/users">
+              {{ 'AbpIdentity::Users' | abpLocalization }}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dropdown-submenu" ngbDropdown #dropdownSubmenu="ngbDropdown" placement="right-top" [autoClose]="true"
+        *abpPermission="'AbpTenantManagement.Tenants'">
+        <div ngbDropdownToggle [class.dropdown-toggle]="false">
+          <a abpEllipsis="210px" [abpEllipsisEnabled]="!smallScreen" role="button"
+            class="btn d-block text-left dropdown-toggle">
+            <i class="fa fa-users"></i>
+            {{ 'AbpTenantManagement::Menu:TenantManagement' | abpLocalization }}
+          </a>
+        </div>
+        <div #childrenContainer class="dropdown-menu border-0 shadow-sm"
+          [class.d-block]="smallScreen && dropdownSubmenu.isOpen()">
+          <div class="dropdown-submenu" *abpPermission="'AbpTenantManagement.Tenants'">
+            <a class="dropdown-item" routerLink="/tenant-management/tenants">
+              {{ 'AbpTenantManagement::Tenants' | abpLocalization }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

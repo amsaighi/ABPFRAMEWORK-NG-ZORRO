@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NavItemsRoutingModule } from './nav-items-routing.module';
-import { NavItemsComponent } from './nav-items.component';
+import { RouteRoutingModule } from './route-routing.module';
+import { RouteComponent } from './route.component';
 import { SharedModule } from '../shared/shared.module';
-
 const COMPONENTS = [
-  NavItemsComponent
+  RouteComponent
 ];
-
 @NgModule({
   declarations: [COMPONENTS],
   exports: [COMPONENTS],
   imports: [
-    SharedModule,
-    NavItemsRoutingModule
+    CommonModule,
+    RouteRoutingModule,
+    SharedModule
   ]
 })
-export class NavItemsModule { }
+export class RouteModule { }
