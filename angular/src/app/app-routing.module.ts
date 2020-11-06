@@ -35,8 +35,8 @@ const routes: Routes = [
       import('./nav-items/nav-items.module').then(m => m.NavItemsModule) 
   },
   { 
-    path: 'routes', loadChildren: () => 
-      import('./route/route.module').then(m => m.RouteModule) 
+    path: 'menus', loadChildren: () => 
+      import('./menu/menu.module').then(m => m.MenuModule) 
   },
 ];
 

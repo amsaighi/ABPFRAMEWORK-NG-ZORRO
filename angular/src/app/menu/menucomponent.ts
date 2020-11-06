@@ -12,11 +12,11 @@ import { debounceTime } from 'rxjs/operators';
 
 
 @Component({
-  selector: 'app-route',
-  templateUrl: './route.component.html',
-  styleUrls: ['./route.component.scss']
+  selector: 'app-menu',
+  templateUrl: './menu.component.html',
+  styleUrls: ['./menu.component.scss']
 })
-export class RouteComponent implements AfterViewInit {
+export class MenuComponent implements AfterViewInit {
 
   @HostBinding('class.mx-auto')
   marginAuto = true;

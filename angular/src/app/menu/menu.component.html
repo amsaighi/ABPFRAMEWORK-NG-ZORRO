@@ -3,7 +3,7 @@
     <a class="nav-link" routerLink="/"><i class="fas fa-home"></i> {{ '::Menu:Home' | abpLocalization }}</a>
   </li>
   <li nz-menu-item>
-    <a class="nav-link" routerLink="/my-page"><i class="fas fa-newspaper mr-1"></i>My Page</a>
+    <a class="nav-link" routerLink="/books"><i class="fas fa-newspaper mr-1"></i>{{'::Menu:BookStore' | abpLocalization}}</a>
   </li>
   <li nz-menu-item #navbarRootDropdown [abpVisibility]="routeContainer" class="nav-item dropdown" display="static"
     (click)="
