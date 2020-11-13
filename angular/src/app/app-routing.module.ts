@@ -31,10 +31,6 @@ const routes: Routes = [
       import('./book/book.module').then(m => m.BookModule) 
   },
   { 
-    path: 'navItemss', loadChildren: () => 
-      import('./nav-items/nav-items.module').then(m => m.NavItemsModule) 
-  },
-  { 
     path: 'menus', loadChildren: () => 
       import('./menu/menu.module').then(m => m.MenuModule) 
   },

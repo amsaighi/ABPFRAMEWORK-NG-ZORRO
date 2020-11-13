@@ -37,7 +37,7 @@ const MODULES = [
 ]
 @NgModule({
   imports: [
-    ...MODULES
+    ...MODULES,
   ],
   declarations: [AppComponent],
   providers: [APP_ROUTE_PROVIDER],
