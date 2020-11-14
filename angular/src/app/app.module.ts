@@ -17,7 +17,15 @@ import { APP_ROUTE_PROVIDER } from './route.provider';
 // antd components module
 import { AntdModule } from 'src/app/antd.module'
 import { SharedModule } from './shared/shared.module';
+import { CoreSharedModule } from './core/core.module';
 
+// Default layout
+import { DefaultLayoutComponent } from './default-layout/default-layout.component';
+import { MenuService } from 'ng-zorro-antd/menu';
+
+const APP_CONTAINERS = [
+  DefaultLayoutComponent
+]
 const MODULES = [
   BrowserModule,
   BrowserAnimationsModule,
@@ -33,14 +41,21 @@ const MODULES = [
   NgxsModule.forRoot(),
   ThemeBasicModule.forRoot(),
   AntdModule,
-  SharedModule
+  SharedModule,
+  CoreSharedModule
 ]
 @NgModule({
   imports: [
     ...MODULES,
   ],
-  declarations: [AppComponent],
-  providers: [APP_ROUTE_PROVIDER],
+  declarations: [
+    AppComponent,
+    ...APP_CONTAINERS
+  ],
+  providers: [
+    APP_ROUTE_PROVIDER,
+    // MenuService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,11 +1,11 @@
-    <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menu">
-      <span>  {{ selectedLangCulture | uppercase}}</span>
-      anglish
-    </div>
-    <nz-dropdown-menu #menu="nzDropdownMenu">
-      <ul nz-menu *ngFor="let lang of languages$ | async">
-        <li nz-menu-item (click)="onChangeLang(lang.cultureName)" >
-          <span class="text-uppercase font-size-12 mr-2">{{ lang?.displayName }}</span>        
-        </li>
-      </ul>
-    </nz-dropdown-menu>
+<a nz-dropdown [nzDropdownMenu]="menu">
+  {{ selectedLangCulture | uppercase}}
+  <i nz-icon nzType="down"></i>
+</a>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu nzSelectable *ngFor="let lang of languages$ | async">
+    <li nz-menu-item (click)="onChangeLang(lang.cultureName)">
+      <span class="text-uppercase font-size-12 mr-2">{{ lang?.displayName }}</span>
+    </li>
+  </ul>
+</nz-dropdown-menu>

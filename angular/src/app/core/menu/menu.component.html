@@ -1,0 +1,39 @@
+<ul nz-menu class="navigation" [nzInlineIndent]="15" [nzMode]="'inline'"
+>
+<ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: antMenuDataActivated, level: 0}"></ng-container>
+<ng-template #menuTpl let-antMenuDataActivated let-level="level">
+  <ng-container *ngFor="let item of antMenuDataActivated">
+    <ng-container>
+      <ng-template #tooltipTpl>
+      </ng-template>
+      <!-- group title item -->
+      <li nz-menu-group nzTitle="{{item.title | abpLocalization }}" *ngIf="item.category"></li>
+      <!-- disabled item -->
+      <li nz-menu-item *ngIf="item.disabled" [nzSelected]="item.selected" [nzDisabled]="true" nz-tooltip
+        nzTooltipPlacement="right" >
+        <span >
+          <span class="title">{{item.title | abpLocalization}}</span>
+        </span>
+      </li>
+      <!-- main item -->
+      <li nz-menu-item *ngIf="!item.children && item.url" routerLink={{item.url}} [nzSelected]="item.selected"
+        [nzDisabled]="item.disabled" nz-tooltip nzTooltipPlacement="right"
+        >
+        <span>
+          <span class="title">{{item.title | abpLocalization}}</span>
+        </span>
+      </li>
+      <!-- submenu item with recursive template -->
+      <li nz-submenu *ngIf="item.children" >
+        <span title >
+          <span class="title">{{item.title | abpLocalization}}</span>
+        </span>
+        <ul>
+          <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: item.children, level: level + 1}">
+          </ng-container>
+        </ul>
+      </li>
+    </ng-container>
+  </ng-container>
+</ng-template>
+</ul>

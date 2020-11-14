@@ -1,14 +1,19 @@
 
 import { NgModule } from '@angular/core';
+// ABP MODULE 
+import { SharedModule } from '../shared/shared.module';
 
+// Component we create
 import { CoreRoutingModule } from './core-routing.module';
 import { LanguageComponent } from './language/language.component';
 import { HeaderComponent } from './header/header.component';
-import { SharedModule } from '../shared/shared.module';
+import { MenuComponent } from './menu/menu.component';
+
 
 const COMPENENTS = [
   LanguageComponent,
-  HeaderComponent
+  HeaderComponent,
+  MenuComponent,
 ];
 const MODULES  = [
   SharedModule,
@@ -25,4 +30,4 @@ const MODULES  = [
     ...MODULES
   ]
 })
-export class CoreModule { }
+export class CoreSharedModule { }
