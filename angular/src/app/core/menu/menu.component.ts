@@ -1,14 +1,8 @@
-import { ABP } from '@abp/ng.core';
+import { Router } from '@angular/router';
 import {
-  Component,
-  HostBinding,
-  Inject,
-  Renderer2,
-  TrackByFunction,
-  AfterViewInit,
+  Component, OnInit,
 } from '@angular/core';
-import { fromEvent } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { MenuService } from 'src/app/services/menu-service';
 
 
 @Component({
@@ -16,21 +10,61 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements AfterViewInit {
+export class MenuComponent implements OnInit {
+  abpMenuData; // ABP
+  antMenuDataActivated: any[] = [] // ABP
+  name: string;
+  url: string;
+  children: string;
 
-  @HostBinding('class.mx-auto')
-  marginAuto = true;
+  constructor(
+    private menuService: MenuService) 
+    {
+    this.menuService.getAbpMenuData().subscribe(abpMenuData => (
+      this.abpMenuData = abpMenuData
+    ))
+  }
 
-  smallScreen = window.innerWidth < 992;
+  ngOnInit() {
+    this.activateAbpMenu();
+  }
 
-  constructor(private renderer: Renderer2) {}
+  // wrapper menu
+  activateAbpMenu(abpMenuData = this.abpMenuData) {
+    abpMenuData = JSON.parse(JSON.stringify(abpMenuData));
+    abpMenuData.forEach( // get the whole menu ABP
+      element => {
+        let antMenu = Object.create(
+          {
+            url: element['path'],
+            title: element['name'],
+            role: element['requiredPolicy'],
+            children: element['children'],
+          })
 
-  ngAfterViewInit() {
-    fromEvent(window, 'resize')
-      .pipe(debounceTime(150))
-      .subscribe(() => {
-        this.smallScreen = window.innerWidth < 992;
-      });
+        if (element["children"] != null && element["children"] != undefined) {
+          let abpChildern = element["children"];
+
+          let antChildern = [];
+
+          abpChildern.forEach( // for children
+            _element => {
+              let antChildMenu = Object.create(
+                {
+                  url: _element['path'],
+                  title: _element['name'],
+                  role: _element['requiredPolicy'],
+                  children: _element['children'],
+
+                })
+              antChildern.unshift(antChildMenu);
+            })
+          antMenu.children = antChildern;
+          antMenu.category = true;
+        }
+        this.antMenuDataActivated.unshift(antMenu);
+      }      
+    ) // end foreach
   }
 
 }

@@ -1,3 +1,14 @@
 <nz-content>
-        <h1>home</h1>
+        <nz-card nzTitle="ABP LTR sample">
+                <h1 class="text-left">{{ '::Welcome' | abpLocalization }}</h1>
+                <div class="row">
+                  <div class="col-md-6 mx-auto">
+                    <p>{{ '::LongWelcomeMessage' | abpLocalization }}</p>
+                    <hr class="my-4" />
+                  </div>
+                </div>
+                <a role="button" 
+                class="text-left pt-2"><i
+                    class="fa fa-sign-in"  ></i> {{ 'AbpIdentity::Login' | abpLocalization }}</a>
+              </nz-card>
 </nz-content>

@@ -21,6 +21,7 @@ import { CoreSharedModule } from './core/core.module';
 
 // Default layout
 import { DefaultLayoutComponent } from './default-layout/default-layout.component';
+import { MenuService } from 'ng-zorro-antd/menu';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -51,7 +52,10 @@ const MODULES = [
     AppComponent,
     ...APP_CONTAINERS
   ],
-  providers: [APP_ROUTE_PROVIDER],
+  providers: [
+    APP_ROUTE_PROVIDER,
+    // MenuService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
