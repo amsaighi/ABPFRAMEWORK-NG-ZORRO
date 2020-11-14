@@ -17,7 +17,7 @@ import {
     templateUrl: './language.component.html',
     styles: [``]
 })
-export class LanguageComponent  {
+export class LanguageComponent implements AfterViewInit {
     @Select(ConfigState.getOne('currentUser'))
     currentUser$: Observable<ApplicationConfiguration.CurrentUser>;
   
@@ -52,15 +52,17 @@ export class LanguageComponent  {
       return this.store.selectSnapshot(SessionState.getLanguage);
     }
   
-    constructor(private store: Store, private authService: AuthService) {}
+    constructor(private store: Store, private authService: AuthService) {
+      console.log("this is language")
+    }
   
-    // ngAfterViewInit() {
-    //   fromEvent(window, 'resize')
-    //     .pipe(debounceTime(150))
-    //     .subscribe(() => {
-    //       this.smallScreen = window.innerWidth < 992;
-    //     });
-    // }
+    ngAfterViewInit() {
+      fromEvent(window, 'resize')
+        .pipe(debounceTime(150))
+        .subscribe(() => {
+          this.smallScreen = window.innerWidth < 992;
+        });
+    }
   
     onChangeLang(cultureName: string) {
       this.store.dispatch(new SetLanguage(cultureName));

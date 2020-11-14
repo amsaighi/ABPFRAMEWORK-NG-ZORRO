@@ -1,6 +1,6 @@
-<div >
     <div nz-dropdown nzTrigger="click" class="dropdown" [nzDropdownMenu]="menu">
       <span>  {{ selectedLangCulture | uppercase}}</span>
+      anglish
     </div>
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu *ngFor="let lang of languages$ | async">
@@ -9,4 +9,3 @@
         </li>
       </ul>
     </nz-dropdown-menu>
-  </div>

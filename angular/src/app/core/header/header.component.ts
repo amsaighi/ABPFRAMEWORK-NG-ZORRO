@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ReplaceableComponentsService } from '@abp/ng.core'; // imported ReplaceableComponentsService
+import { eThemeBasicComponents } from '@abp/ng.theme.basic';
+import { LanguageComponent } from '../language/language.component';
 
 @Component({
     selector: 'app-header',
@@ -18,7 +21,15 @@ import { Component, OnInit } from '@angular/core';
     `]
 })
 export class HeaderComponent implements OnInit {
-    constructor() { }
+    constructor(
+      private replaceableComponents: ReplaceableComponentsService
+    ) { }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+      this.replaceableComponents.add({
+        component: LanguageComponent,
+        key: eThemeBasicComponents.NavItems,
+      });
+      console.log(this.replaceableComponents);
+     }
 }
