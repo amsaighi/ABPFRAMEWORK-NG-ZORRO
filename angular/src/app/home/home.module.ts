@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CoreModule } from '../core/core.module';
-import { MenuModule } from '../menu/menu.module';
+import { CoreSharedModule } from '../core/core.module';
 
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
@@ -9,8 +8,7 @@ import { HomeComponent } from './home.component';
 const MODULE = [
   SharedModule, 
   HomeRoutingModule, 
-  MenuModule,
-  CoreModule
+  CoreSharedModule
 ];
 const COMPONENTS = [
   HomeComponent
@@ -20,7 +18,8 @@ const COMPONENTS = [
     ...COMPONENTS
   ],
   imports: [
-    ...MODULE]
+    ...MODULE
+  ]
     ,
 })
 export class HomeModule {}

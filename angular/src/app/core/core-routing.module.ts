@@ -1,3 +1,4 @@
+import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'language',
     component : LanguageComponent
+  },
+  {
+    path: 'menu',
+    component : MenuComponent
   },
 ];
 

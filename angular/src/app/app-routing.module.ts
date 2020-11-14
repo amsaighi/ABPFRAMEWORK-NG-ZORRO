@@ -1,39 +1,52 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DefaultLayoutComponent } from './default-layout/default-layout.component';
 
 const routes: Routes = [
+ 
+  {
+    path :'',
+    redirectTo : 'home',
+    pathMatch : 'full',
+  },
   {
     path: '',
-    pathMatch: 'full',
-    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
-  },
-  {
-    path: 'account',
-    loadChildren: () =>
-      import('@abp/ng.account').then((m) => m.AccountModule.forLazy({ redirectUrl: '/' })),
-  },
-  {
-    path: 'identity',
-    loadChildren: () => import('@abp/ng.identity').then((m) => m.IdentityModule.forLazy()),
-  },
-  {
-    path: 'tenant-management',
-    loadChildren: () =>
-      import('@abp/ng.tenant-management').then((m) => m.TenantManagementModule.forLazy()),
-  },
-  {
-    path: 'setting-management',
-    loadChildren: () =>
-      import('@abp/ng.setting-management').then((m) => m.SettingManagementModule.forLazy()),
-  },
-  { 
-    path: 'books', loadChildren: () => 
-      import('./book/book.module').then(m => m.BookModule) 
-  },
-  { 
-    path: 'menus', loadChildren: () => 
-      import('./menu/menu.module').then(m => m.MenuModule) 
-  },
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Home'
+    },
+    children: [
+      {
+        path: 'home',
+        pathMatch: 'full',
+        loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+      },
+      {
+        path: 'account',
+        loadChildren: () =>
+          import('@abp/ng.account').then((m) => m.AccountModule.forLazy({ redirectUrl: '/' })),
+      },
+      {
+        path: 'identity',
+        loadChildren: () => import('@abp/ng.identity').then((m) => m.IdentityModule.forLazy()),
+      },
+      {
+        path: 'tenant-management',
+        loadChildren: () =>
+          import('@abp/ng.tenant-management').then((m) => m.TenantManagementModule.forLazy()),
+      },
+      {
+        path: 'setting-management',
+        loadChildren: () =>
+          import('@abp/ng.setting-management').then((m) => m.SettingManagementModule.forLazy()),
+      },
+      { 
+        path: 'books', 
+        loadChildren: () => 
+          import('./book/book.module').then(m => m.BookModule) 
+      },
+    ]
+  }
 ];
 
 @NgModule({
