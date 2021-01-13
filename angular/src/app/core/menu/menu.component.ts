@@ -11,8 +11,8 @@ import { MenuService } from 'src/app/services/menu-service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  abpMenuData; // ABP
-  antMenuDataActivated: any[] = [] // ABP
+  abpMenuData;
+  antMenuDataActivated: any[] = [];
   name: string;
   url: string;
   children: string;
@@ -29,10 +29,9 @@ export class MenuComponent implements OnInit {
     this.activateAbpMenu();
   }
 
-  // wrapper menu
   activateAbpMenu(abpMenuData = this.abpMenuData) {
     abpMenuData = JSON.parse(JSON.stringify(abpMenuData));
-    abpMenuData.forEach( // get the whole menu ABP
+    abpMenuData.forEach( 
       element => {
         let antMenu = Object.create(
           {
@@ -57,14 +56,14 @@ export class MenuComponent implements OnInit {
                   children: _element['children'],
 
                 })
-              antChildern.unshift(antChildMenu);
+              antChildern.push(antChildMenu);
             })
           antMenu.children = antChildern;
           antMenu.category = true;
         }
-        this.antMenuDataActivated.unshift(antMenu);
+        this.antMenuDataActivated.push(antMenu);
       }      
-    ) // end foreach
+    )
   }
 
 }

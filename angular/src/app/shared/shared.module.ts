@@ -11,7 +11,8 @@ const MODULE = [
   ThemeBasicModule,
   NgbDropdownModule,
   NgxValidateCoreModule,
-  AntdModule];
+  AntdModule
+];
   
 @NgModule({
   declarations: [],

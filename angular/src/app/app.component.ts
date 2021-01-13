@@ -6,8 +6,6 @@ import { SearchComponent } from './core/search.component';
   selector: 'app-root',
   template: `
   <router-outlet></router-outlet>
-    <!-- <abp-loader-bar></abp-loader-bar>
-    <abp-dynamic-layout></abp-dynamic-layout> -->
   `,
 })
 export class AppComponent {
