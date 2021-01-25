@@ -54,7 +54,6 @@ const MODULES = [
   ],
   providers: [
     APP_ROUTE_PROVIDER,
-    // MenuService
   ],
   bootstrap: [AppComponent],
 })

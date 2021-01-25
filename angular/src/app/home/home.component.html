@@ -7,8 +7,10 @@
                     <hr class="my-4" />
                   </div>
                 </div>
-                <a role="button" 
-                class="text-left pt-2"><i
-                    class="fa fa-sign-in"  ></i> {{ 'AbpIdentity::Login' | abpLocalization }}</a>
+                <a *ngIf="!hasLoggedIn" (click)="login()" class="px-4 btn btn-primary ml-1" role="button"
+                ><i class="fa fa-sign-in"></i> {{ 'AbpAccount::Login' | abpLocalization }}</a>
+
+                <a *ngIf="hasLoggedIn" (click)="logout()" class="px-4 btn btn-warning ml-1" role="button"
+                ><i class="fa fa-sign-in"></i> {{ 'AbpAccount::Logout' | abpLocalization }}</a>
               </nz-card>
 </nz-content>
