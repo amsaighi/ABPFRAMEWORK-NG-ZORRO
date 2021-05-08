@@ -6,18 +6,28 @@ export const environment = {
   production: false,
   application: {
     baseUrl,
-    name: 'BookStore',
+    name: 'SgsCore',
+    // name: 'BookStore',
     logoUrl: '',
   },
   oAuthConfig: {
-    issuer: 'https://localhost:44335',
+    // issuer: 'https://localhost:44369',
+    issuer: 'http://itcomp-ids',
     redirectUri: baseUrl,
-    clientId: 'BookStore_App',
+    // clientId: 'DossierEtudiant_ConsoleTestApp',
+    clientId: 'SgsCore',
     responseType: 'code',
-    scope: 'offline_access BookStore',
+    // scope: 'offline_access DossierEtudiant',
+    scope: 'offline_access SgsCore',
+    requireHttps: false
+    // requestAccessToken : true
+
   },
   apis: {
     default: {
+      // url: 'https://sgscore',
+      // rootNamespace: 'Itcomp.Sgs',
+    // default: {
       url: 'https://localhost:44384',
       rootNamespace: 'Acme.BookStore',
     },

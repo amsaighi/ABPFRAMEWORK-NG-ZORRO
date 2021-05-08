@@ -22,6 +22,7 @@ import { CoreSharedModule } from './core/core.module';
 // Default layout
 import { DefaultLayoutComponent } from './default-layout/default-layout.component';
 import { MenuService } from 'ng-zorro-antd/menu';
+import { registerLocale } from '@abp/ng.core/locale';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -32,9 +33,10 @@ const MODULES = [
   AppRoutingModule,
   CoreModule.forRoot({
     environment,
+    // registerLocaleFn: registerLocale(),
   }),
   ThemeSharedModule.forRoot(),
-  AccountConfigModule.forRoot(),
+  // AccountConfigModule.forRoot(),
   IdentityConfigModule.forRoot(),
   TenantManagementConfigModule.forRoot(),
   SettingManagementConfigModule.forRoot(),
