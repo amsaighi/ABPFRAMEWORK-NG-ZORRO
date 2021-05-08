@@ -24,9 +24,13 @@
     "@angular/platform-browser": "~10.1.2",
     "@angular/platform-browser-dynamic": "~10.1.2",
     "@angular/router": "~10.1.2",
+    "hosted-git-info": "^4.0.2",
+    "lodash": "^4.17.21",
     "ng-zorro-antd": "^10.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "ua-parser-js": "^0.7.28",
+    "url-parse": "^1.5.1",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -47,7 +51,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "ng-packagr": "^10.0.0",
+    "ng-packagr": "^11.2.4",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
