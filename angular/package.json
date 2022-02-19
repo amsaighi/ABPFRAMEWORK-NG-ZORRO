@@ -30,7 +30,7 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "ua-parser-js": "^0.7.28",
-    "url-parse": "^1.5.1",
+    "url-parse": "^1.5.6",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
